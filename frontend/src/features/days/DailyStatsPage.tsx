@@ -45,7 +45,11 @@ export function DailyStatsPage() {
           pageSizeOptions={[25, 50, 100]}
           disableRowSelectionOnClick
           onRowClick={(params: GridRowParams<DayStats>) => setSelectedDate(params.row.date)}
-          sx={{ border: "none", "& .MuiDataGrid-row": { cursor: "pointer" } }}
+          sx={{
+            border: "none",
+            "& .MuiDataGrid-row": { cursor: "pointer" },
+            "& .MuiDataGrid-row:hover": { backgroundColor: "action.hover" },
+          }}
         />
       </Box>
 
