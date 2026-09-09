@@ -1,5 +1,5 @@
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { Chip, Stack, Tooltip, Typography } from "@mui/material";
+import { Box, Chip, Stack, Tooltip, Typography } from "@mui/material";
 import type { DayStats } from "./api";
 import { formatDate, formatEnergy, formatPrice } from "./format";
 import { NoDataCell } from "./NoDataCell";
@@ -64,12 +64,14 @@ export const dayColumns: GridColDef<DayStats>[] = [
       if (params.value == null) return <NoDataCell reason={missingDataReason(params.row)} />;
       const isNegative = params.value < 0;
       return (
-        <Typography
-          variant="body2"
-          sx={{ color: isNegative ? "secondary.dark" : "text.primary", fontWeight: isNegative ? 600 : 400 }}
-        >
-          {formatPrice(params.value)}
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end", height: "100%" }}>
+          <Typography
+            variant="body2"
+            sx={{ color: isNegative ? "secondary.dark" : "text.primary", fontWeight: isNegative ? 600 : 400 }}
+          >
+            {formatPrice(params.value)}
+          </Typography>
+        </Box>
       );
     },
   },
@@ -80,12 +82,14 @@ export const dayColumns: GridColDef<DayStats>[] = [
     align: "right",
     headerAlign: "right",
     renderCell: (params: GridRenderCellParams<DayStats, number>) => (
-      <Typography
-        variant="body2"
-        sx={{ color: params.value ? "secondary.dark" : "text.disabled", fontWeight: params.value ? 600 : 400 }}
-      >
-        {params.value ?? 0} h
-      </Typography>
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end", height: "100%" }}>
+        <Typography
+          variant="body2"
+          sx={{ color: params.value ? "secondary.dark" : "text.disabled", fontWeight: params.value ? 600 : 400 }}
+        >
+          {params.value ?? 0} h
+        </Typography>
+      </Box>
     ),
   },
 ];
