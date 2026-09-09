@@ -15,6 +15,12 @@ export function formatDate(isoDate: string): string {
   }).format(date);
 }
 
+// starttime is "YYYY-MM-DD HH:MM:SS" — sliced directly rather than parsed
+// into a Date, same reasoning as formatDate above.
+export function formatHour(starttime: string): string {
+  return starttime.slice(11, 16);
+}
+
 const numberFormat = new Intl.NumberFormat("fi-FI", { maximumFractionDigits: 0 });
 const priceFormat = new Intl.NumberFormat("fi-FI", {
   minimumFractionDigits: 2,
