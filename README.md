@@ -4,27 +4,28 @@ Electricity consumption and price data from the Finnish energy market. Project c
 
 Shows fetched data on a daily basis and displays basic columns for consumption, production and price.
 
-App starts with the following methods
-Cloning the repo and running commands
+App starts with the following methods:
 
-docker compose up --build --renew-anon-volumes -d
-docker compose stop backend
+Cloning the repo and running commands:
+- docker compose up --build --renew-anon-volumes -d
+- docker compose stop backend
 
-cd backend
-npm install
-npm run dev
+- cd backend
+- npm install
+- npm run dev
 
-cd frontend
-npm install
-npm run dev
+- cd frontend
+- npm install
+- npm run dev
 
-And
+And also
 
 Docker is built for the backend
 
 And also running in cloud(Render).
 
 I chose this stack because its familiar for me from previous projects
+
 Stack used:
 
 - React TS
@@ -37,11 +38,13 @@ Stack used:
 Features:
 
 - Daily rows with consumption, production, avg price and negative price streak.
-- Single day dialog with more detailed information.
+- Single day dialog with more detailed information, graphs and other cool stuff.
+- Night mode/light mode (wow)
+- Filtering, searching, column ordering/hiding etc, pagination added. Most of the stuff was builtin for the DataGrid component but needed some fixing(like always).
 
 Design decisions:
 
-- For some days there are only 23 hours, apparently because of the time zone change. This was handled by the backend by adding a flag to the day stats.
+- For some days there are only 23 hours, apparently because of the time zone change(?). This was handled by the backend by adding a flag to the day stats.
 - Some days didnt have data for every hour and was basically missing. These days are displayed as missing if we cannot accurately determine if the day is complete or not.
 
 Something I left out:
@@ -58,5 +61,6 @@ Usage of AI:
 
 render.yaml sets up the db, backend and frontend together on Render. Seed data needs
 loading once by hand since Render skips the local init script:
+
 tar -xzf init-db.tar.gz
 psql "<db url from Render>" -f init-db.sql
