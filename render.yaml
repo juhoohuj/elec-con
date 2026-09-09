@@ -17,3 +17,13 @@ services:
         fromDatabase:
           name: elec-con-db
           property: connectionString
+
+  - type: web
+    name: elec-con-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://elec-con-backend.onrender.com

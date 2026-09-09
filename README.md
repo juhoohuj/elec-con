@@ -54,6 +54,7 @@ Usage of AI:
 - Used to help with designing and checking the data integrity
 - Dockerized the backend and set up the Render deployment (Dockerfile, docker-compose backend service, render.yaml blueprint), guided by me.
 
-Backend also runs in Docker now, docker compose up builds and starts it alongside the db.
-
-
+render.yaml sets up the db, backend and frontend together on Render. Seed data needs
+loading once by hand since Render skips the local init script:
+tar -xzf init-db.tar.gz
+psql "<db url from Render>" -f init-db.sql
