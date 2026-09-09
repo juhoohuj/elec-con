@@ -1,0 +1,19 @@
+databases:
+  - name: elec-con-db
+    databaseName: electricity
+    user: academy
+    plan: free
+
+services:
+  - type: web
+    name: elec-con-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: elec-con-db
+          property: connectionString
